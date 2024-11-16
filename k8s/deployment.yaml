@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dog-restaurant-payments
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: dog-restaurant-payments
@@ -16,7 +16,7 @@ spec:
       serviceAccountName: dog-service-account
       containers:
       - name: dog-restaurant-payments
-        image: "${DOG_RESTAURANT_PAYMENTS_IMAGE}"
+        image: 764549915701.dkr.ecr.us-east-1.amazonaws.com/dog-restaurant-payments:latest
         resources:
           requests:
             memory: "256Mi"
