@@ -30,7 +30,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    
+    environment: production
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2

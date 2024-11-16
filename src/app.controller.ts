@@ -13,5 +13,6 @@ export class AppController {
   @Get("/teste")
   async getTeste(): Promise<String> {
     return this.appService.getHello();
+    
   }
 }
