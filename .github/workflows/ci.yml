@@ -1,6 +1,7 @@
 on:
   push:
-    branches: [ main ]
+    branches: 
+      - '**'
   pull_request:
     branches: [ main ]
 
@@ -24,6 +25,15 @@ jobs:
 
     - name: Run unit tests
       run: npm test
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1

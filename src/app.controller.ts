@@ -9,4 +9,9 @@ export class AppController {
   async getHello(): Promise<String> {
     return this.appService.getHello();
   }
+
+  @Get("/teste")
+  async getTeste(): Promise<String> {
+    return this.appService.getHello();
+  }
 }
