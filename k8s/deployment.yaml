@@ -16,7 +16,7 @@ spec:
       serviceAccountName: dog-service-account
       containers:
       - name: dog-restaurant-payments
-        image: 764549915701.dkr.ecr.us-east-1.amazonaws.com/dog-restaurant-payments:latest
+        image: <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dog-restaurant-payments:latest
         resources:
           requests:
             memory: "256Mi"
