@@ -45,6 +45,39 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+2 - Run localstack
+
+`$ cd docker`
+
+`$ docker-compose up -d`
+
+1 - Configure environment access configuration
+```
+$ export AWS_ACCESS_KEY_ID="test"
+$ export AWS_SECRET_ACCESS_KEY="test"
+$ export AWS_DEFAULT_REGION="us-east-1"
+$ aws configure --profile localstack
+$ aws configure list
+```
+
+2- Create a dynamodb table
+```
+aws --endpoint-url=http://localhost:4566 dynamodb create-table \
+    --table-name pagamentos \
+    --attribute-definitions \
+        AttributeName=id,AttributeType=S \
+        AttributeName=pedidoId,AttributeType=S \
+    --key-schema \
+        AttributeName=id,KeyType=HASH \
+        AttributeName=pedidoId,KeyType=RANGE \
+    --billing-mode PAY_PER_REQUEST  
+--profile localstack
+
+3- Validate table and data scan
+```
+aws dynamodb list-tables --endpoint-url http://localhost:4566
+aws dynamodb --endpoint-url http://localhost:4566 scan --table-name merchant-product-configuration-events
+
 ## Test
 
 ```bash
