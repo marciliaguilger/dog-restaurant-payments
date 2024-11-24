@@ -25,9 +25,7 @@ export class PagamentoGateway implements IPagamentoGateway {
             status: pagamento.status as StatusPagamento,
             dataUltimaAtualizacao: new Date(pagamento.dataUltimaAtualizacao), 
         };
-        
         this.repository.save(pagamentoModel)
-
     }
     async findById(pagamentoId: UUID): Promise<Pagamento> {
         const model =  await this.repository.findById(pagamentoId)

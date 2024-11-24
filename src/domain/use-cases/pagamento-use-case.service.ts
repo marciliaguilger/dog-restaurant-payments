@@ -14,10 +14,9 @@ export class PagamentoUseCase implements IPagamentoUseCase {
     
 
     create(clienteId: string, pedidoId: string, tipoPagamento: TipoPagamento): Pagamento {
-        let codigoPagamento = randomUUID.toString()
+        let codigoPagamento = randomUUID().toString()
         let pagamentoEntity = new Pagamento(clienteId, pedidoId, tipoPagamento)
         pagamentoEntity.criarNovoPagamento(codigoPagamento)
-
         this.pagamentoGateway.save(pagamentoEntity)
         
         return pagamentoEntity
