@@ -11,7 +11,7 @@ describe ('PagamentoUseCase', () => {
     beforeEach(async() => {
         mockPagamentoGateway = {
             save: jest.fn().mockImplementation(()=> {
-                return new Pagamento("123", "123", TipoPagamento.Pix, "123")
+                return new Pagamento("123", "123", TipoPagamento.Pix)
             }),
             findById: jest.fn(),
         }
