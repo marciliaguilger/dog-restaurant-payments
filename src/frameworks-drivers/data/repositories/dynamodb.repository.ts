@@ -5,15 +5,18 @@ import { PutItemInputAttributeMap } from "aws-sdk/clients/dynamodb";
 
 AWS.config.update({ region: 'us-east-1'});
 
-const dynamoDbConfig: AWS.DynamoDB.DocumentClient.DocumentClientOptions & AWS.DynamoDB.ClientConfiguration = {
+/*const dynamoDbConfig: AWS.DynamoDB.DocumentClient.DocumentClientOptions & AWS.DynamoDB.ClientConfiguration = {
   endpoint: 'http://localhost:4566',
   region: 'us-east-1',
   credentials: {
     accessKeyId: 'test',  
     secretAccessKey: 'test'
   }
-};
-const dynamoDb = new AWS.DynamoDB.DocumentClient(dynamoDbConfig);
+};*/
+
+
+//const dynamoDb = new AWS.DynamoDB.DocumentClient(dynamoDbConfig);
+const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 export class DynamoDbRepository implements IDynamoDbRepository{
     private tableName = "pagamentos";
