@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import AWS from 'aws-sdk';
 import { PagamentoModule } from './frameworks-drivers/api/pagamento.module';
 
 require('dotenv').config();
