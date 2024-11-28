@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: dog-restaurant-payments
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: dog-restaurant-payments
@@ -19,11 +19,11 @@ spec:
         image: <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dog-restaurant-payments:latest
         resources:
           requests:
-            cpu: 500m
-            memory: 512Mi
+            memory: "256Mi"
+            cpu: "250m"
           limits:
-            cpu: 1000m
-            memory: 1024Mi
+            memory: "512Mi"
+            cpu: "500m"
         ports:
         - containerPort: 3000
         env:
