@@ -18,12 +18,12 @@ spec:
       - name: dog-restaurant-payments
         image: <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dog-restaurant-payments:latest
         resources:
-          requests:
-            memory: "512Mi"
-            cpu: "500m"
-          limits:
-            memory: "1024Mi"
-            cpu: "1000m"
+            requests:
+              cpu: 100m
+              memory: "1024Mi"
+            limits:
+              cpu: 1000m
+              memory: "2048Mi"
         ports:
         - containerPort: 3000
         env:
