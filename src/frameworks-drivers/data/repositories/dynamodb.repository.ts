@@ -26,9 +26,13 @@ export class DynamoDbRepository implements IDynamoDbRepository{
   private readonly dynamoDb: DynamoDBDocumentClient;
 
   constructor() {
+    console.log('incializando configuração do dynamo')
     const client = new DynamoDBClient({
       region: 'us-east-1',
-      credentials: fromTokenFile()
+      credentials: fromTokenFile({
+        roleArn: process.env.AWS_ROLE_ARN,
+        webIdentityTokenFile: process.env.AWS_WEB_IDENTITY_TOKEN_FILE
+      })
     });
     this.dynamoDb = DynamoDBDocumentClient.from(client);
 
@@ -37,6 +41,7 @@ export class DynamoDbRepository implements IDynamoDbRepository{
   
 
     async create(item: PutItemInputAttributeMap): Promise<void> {
+      console.log('create method called')
       const command = new PutCommand({
         TableName: this.tableName,
         Item: item,
