@@ -4,6 +4,7 @@ import { IPagamentoRepository } from "src/domain/ports/pagamento-repository.inte
 import { IDynamoDbRepository } from "./dynamodb-repository.interface";
 import { PagamentoModel } from "src/interface-adapters/presenters/db-model/pagamento.model";
 import { Item } from "aws-sdk/clients/simpledb";
+import { DynamoDB } from "aws-sdk";
 
 export class PagamentoRepository implements IPagamentoRepository {
     constructor(
@@ -13,7 +14,13 @@ export class PagamentoRepository implements IPagamentoRepository {
 
     async save(pagamento: PagamentoModel) {
         const item = convertPagamentoEntityToDynamoItem(pagamento);
-        this.db.create(item)
+        try{
+            this.db.create(item)
+        } catch (error) {
+            console.error('Error saving pagamento:', error);
+            throw error;
+        }
+
     }
 
     async findById(pagamentoId: UUID): Promise<PagamentoModel> {
@@ -23,7 +30,7 @@ export class PagamentoRepository implements IPagamentoRepository {
 
 }
 
-const convertPagamentoEntityToDynamoItem = (pagamento: PagamentoModel): AWS.DynamoDB.DocumentClient.PutItemInputAttributeMap => {
+const convertPagamentoEntityToDynamoItem = (pagamento: PagamentoModel): DynamoDB.DocumentClient.PutItemInputAttributeMap => {
     return {
         id: pagamento.id,
         clienteId: pagamento.clienteId,
