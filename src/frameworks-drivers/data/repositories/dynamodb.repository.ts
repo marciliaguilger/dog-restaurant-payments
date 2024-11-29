@@ -31,6 +31,8 @@ export class DynamoDbRepository implements IDynamoDbRepository{
       credentials: fromTokenFile()
     });
     this.dynamoDb = DynamoDBDocumentClient.from(client);
+
+    console.log(this.dynamoDb.config.credentials);
   }  
   
 
