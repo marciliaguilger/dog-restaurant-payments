@@ -36,12 +36,14 @@ export class DynamoDbRepository implements IDynamoDbRepository{
     });
     this.dynamoDb = DynamoDBDocumentClient.from(client);
 
-    console.log(this.dynamoDb.config.credentials);
+    console.log(client.config.credentials);
   }  
   
 
     async create(item: PutItemInputAttributeMap): Promise<void> {
       console.log('create method called')
+      console.log(this.dynamoDb.config.credentials)
+
       const command = new PutCommand({
         TableName: this.tableName,
         Item: item,
