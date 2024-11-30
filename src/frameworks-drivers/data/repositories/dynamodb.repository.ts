@@ -33,15 +33,19 @@ export class DynamoDbRepository implements IDynamoDbRepository{
     console.log('ARN da função IAM:', process.env.AWS_ROLE_ARN);
     console.log('Caminho do arquivo de token:', process.env.AWS_WEB_IDENTITY_TOKEN_FILE);
 
-    const client = new DynamoDBClient({
-      region: 'us-east-1',
-      credentials: fromTokenFile({
-        roleArn: process.env.AWS_ROLE_ARN,
-        webIdentityTokenFile: process.env.AWS_WEB_IDENTITY_TOKEN_FILE
-      })
-    });
-    this.dynamoDb = DynamoDBDocumentClient.from(client);
+    //const client = new DynamoDBClient({
+    //  region: 'us-east-1',
+    //  credentials: fromTokenFile({
+    //    roleArn: process.env.AWS_ROLE_ARN,
+    //    webIdentityTokenFile: process.env.AWS_WEB_IDENTITY_TOKEN_FILE
+    //  })
+    //});
+    //this.dynamoDb = DynamoDBDocumentClient.from(client);
     
+    const client = new DynamoDBClient({});
+
+    this.dynamoDb = DynamoDBDocumentClient.from(client);
+
     this.testConnection();
   }  
   
