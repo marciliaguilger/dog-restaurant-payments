@@ -50,7 +50,7 @@ export class DynamoDbRepository implements IDynamoDbRepository{
   
     async testConnection() {
         const params = {
-          TableName: "pedidos",
+          TableName: "pagamentos",
         };
     
         try {
