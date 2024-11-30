@@ -14,9 +14,6 @@ spec:
     spec:
       hostname: dog-restaurant-payments
       serviceAccountName: dog-service-account
-      namespace: default
-      annotations: 
-        eks.amazonaws.com/role-arn: arn:aws:iam::764549915701:role/dog-eks-dynamo
       containers:
       - name: dog-restaurant-payments
         image: <AWS_ACCOUNT_ID>.dkr.ecr.us-east-1.amazonaws.com/dog-restaurant-payments:latest
