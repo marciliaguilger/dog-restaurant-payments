@@ -1,7 +1,7 @@
 import { Item } from "aws-sdk/clients/simpledb";
 import { IDynamoDbRepository } from "./dynamodb-repository.interface";
 import { PutItemInputAttributeMap } from "aws-sdk/clients/dynamodb";
-import { DynamoDBClient, ListTablesCommand } from "@aws-sdk/client-dynamodb";
+import { DynamoDBClient, ListTablesCommand, ScanCommand } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { fromTokenFile } from "@aws-sdk/credential-providers";
 
@@ -40,7 +40,6 @@ export class DynamoDbRepository implements IDynamoDbRepository{
     //    webIdentityTokenFile: process.env.AWS_WEB_IDENTITY_TOKEN_FILE
     //  })
     //});
-    //this.dynamoDb = DynamoDBDocumentClient.from(client);
     
     const client = new DynamoDBClient({});
 
@@ -50,9 +49,14 @@ export class DynamoDbRepository implements IDynamoDbRepository{
   }  
   
     async testConnection() {
-      try {
-        const result = await this.dynamoDb.send(new ListTablesCommand({}));
-        console.log('Conexão com DynamoDB estabelecida com sucesso. Tabelas disponíveis:', result.TableNames);
+        const params = {
+          TableName: "pedidos",
+        };
+    
+        try {
+          // Scan da tabela para obter todos os itens; para grandes tabelas, considere usar filtro ou limitar o scan
+          const data = await this.dynamoDb.send(new ScanCommand(params));
+          console.log("Scan de itens:", data.Items);
       } catch (error) {
         console.error('Erro ao conectar ao DynamoDB:', error);
       }
