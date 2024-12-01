@@ -1,6 +1,5 @@
 import { Body, Controller, Inject, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { Pagamento } from "src/domain/entities/pagamento.entity";
 import { IPagamentoUseCase } from "src/domain/use-cases/pagamento-use-case.interface";
 import { CreatePagamentoInput } from "src/interface-adapters/presenters/api-model/inputs/create-pagamento.input";
 
@@ -12,7 +11,8 @@ export class PagamentoController{
         private readonly pagamentoUseCase: IPagamentoUseCase) { }
 
     @Post()
-    async createPagamento(@Body() input: CreatePagamentoInput): Promise<Pagamento> {
-        return this.pagamentoUseCase.create(input.clienteId, input.pedidoId, input.tipoPagamento)
+    async createPagamento(@Body() input: CreatePagamentoInput): Promise<string> {
+        const pagamento = this.pagamentoUseCase.create(input.clienteId, input.pedidoId, input.tipoPagamento)
+        return pagamento.id
     }
 }
