@@ -1,0 +1,14 @@
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: curl-pod
+     namespace: default
+   spec:
+     containers:
+     - name: curl
+       image: curlimages/curl:latest
+       command: ["sleep", "3600"]
+
+
+#kubectl exec -it curl-pod -- /bin/sh       
+#curl http://<cluster-ip>:<port>
