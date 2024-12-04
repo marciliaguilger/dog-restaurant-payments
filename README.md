@@ -26,6 +26,9 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Test coverage
+![image](https://github.com/user-attachments/assets/6ce8e9c5-5337-4a6f-a4d0-13e37f54ac00)
+
 ## Installation
 
 ```bash
