@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Inject, Post } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
-import { IPagamentoUseCase } from "src/domain/use-cases/pagamento-use-case.interface";
-import { CreatePagamentoInput } from "src/interface-adapters/presenters/api-model/inputs/create-pagamento.input";
+import { IPagamentoUseCase } from "../../domain/use-cases/pagamento-use-case.interface";
+import { CreatePagamentoInput } from "../../interface-adapters/presenters/api-model/inputs/create-pagamento.input";
 
 @ApiTags('Pagamento')
 @Controller('pagamentos')
